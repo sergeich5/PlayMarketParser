@@ -50,12 +50,15 @@ class PlayMarketParser
     {
         $html = $this->loadHtml('https://play.google.com/store/apps/details?' . http_build_query(['id' => $packageName]));
 
-        return $this->getAppInfoFromHtml($html, $packageName);
+        return $this->parseAppInfoFromHtml($html, $packageName);
     }
 
-    private function getAppInfoFromHtml(string $html, string $packageName): App
+    private function parseAppInfoFromHtml(string $html, string $packageName): App
     {
         $html = str_get_html($html);
+
+        if (is_null($html))
+            throw new ParseException('document');
 
         $app = new App();
         $app->packageName = $packageName;
@@ -69,7 +72,7 @@ class PlayMarketParser
 
         try {
             $stars = $html->find('[role="img"]')[1];
-            $app->rating = floatval($stars->parent->parent->find('div')[0]->plaintext);
+            $app->rating = floatval(str_replace(',', '.', $stars->parent->parent->find('div')[0]->plaintext));
             unset($stars);
         } catch (\Exception $e) {
             throw new ParseException('app rating');

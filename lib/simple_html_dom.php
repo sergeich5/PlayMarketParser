@@ -98,7 +98,7 @@ function str_get_html(
     $target_charset = DEFAULT_TARGET_CHARSET,
     $stripRN = true,
     $defaultBRText = DEFAULT_BR_TEXT,
-    $defaultSpanText = DEFAULT_SPAN_TEXT) : simple_html_dom
+    $defaultSpanText = DEFAULT_SPAN_TEXT) : ?simple_html_dom
 {
     $dom = new simple_html_dom(
         null,
@@ -112,7 +112,7 @@ function str_get_html(
 
     if (empty($str) || strlen($str) > MAX_FILE_SIZE) {
         $dom->clear();
-        return false;
+        return null;
     }
 
     return $dom->load($str, $lowercase, $stripRN);
