@@ -1,0 +1,23 @@
+{
+  "name": "sergeich5/play-market-parser",
+  "description": "Simple tool to parse data on Google Play Market",
+  "type": "library",
+  "license": "MIT",
+  "version": "1.0.0",
+  "require": {
+    "php": ">=7.1",
+    "guzzlehttp/guzzle": "^7.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+    "psr-0": {
+      "Sergeich5": "src"
+    },
+    "files": ["src"]
+  },
+  "scripts": {
+    "test" : "phpunit tests --debug"
+  }
+}
