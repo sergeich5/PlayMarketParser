@@ -14,7 +14,9 @@
     "psr-0": {
       "Sergeich5": "src"
     },
-    "files": ["src"]
+    "files": [
+      "./lib/simple_html_dom.php"
+    ]
   },
   "scripts": {
     "test" : "phpunit tests --debug"
